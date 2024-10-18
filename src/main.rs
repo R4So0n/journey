@@ -1,3 +1,7 @@
+// This is a custom library I am working on. -- Alex
+use docmyrust::generate_docs_for_project;
+
+#[warn(unused_must_use)]
 use dotenv::dotenv;
 use poise::serenity_prelude as serenity;
 use std::collections::HashMap;
@@ -30,9 +34,14 @@ async fn on_error(error: poise::FrameworkError<'_, Data, Error>) {
     }
 }
 
+// @DOCMYRUST
+// # Main
+// This is the main function of the bot.
+
 #[tokio::main]
 async fn main() {
     dotenv().ok();
+    generate_docs_for_project("./src", "./docs").expect("Failed to generate docs");
     let token = std::env::var("TOKEN").expect("Expected a token in the environment");
     let prefix = std::env::var("PREFIX").unwrap_or("~".to_string());
     let commands = vec![roll(), example_command()];
@@ -66,6 +75,10 @@ async fn main() {
         },
         ..Default::default()
     };
+
+    // @DOCMYRUST
+    // ## Framework
+    // This is the main function of the bot.
 
     let framework = poise::Framework::builder()
         .options(options)

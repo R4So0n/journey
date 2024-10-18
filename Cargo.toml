@@ -10,6 +10,7 @@ rand = "0.8.5"
 tracing = "0.1.23"
 tracing-subscriber = "0.3"
 regex = "1.11.0"
+docmyrust = { path = "./docmyrust" }
 
 [dependencies.tokio]
 version = "1.0"

@@ -6,7 +6,8 @@ use std::sync::Mutex;
 use std::time::Duration;
 
 mod commands;
-use crate::commands::dice::roll;
+use crate::commands::dice::*;
+use crate::commands::example::*;
 
 pub struct Data {
     votes: Mutex<HashMap<String, u32>>,
@@ -34,7 +35,7 @@ async fn main() {
     dotenv().ok();
     let token = std::env::var("TOKEN").expect("Expected a token in the environment");
     let prefix = std::env::var("PREFIX").unwrap_or("~".to_string());
-    let commands = vec![roll()];
+    let commands = vec![roll(), example_command()];
 
     let intents =
         serenity::GatewayIntents::non_privileged() | serenity::GatewayIntents::MESSAGE_CONTENT;
